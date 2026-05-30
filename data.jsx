@@ -9,9 +9,9 @@
 
 /* ── Timeline ── most recent first ─────────────────────────────────────────── */
 const TIMELINE = [
-  { id: 'tl-1', date: 'May 2026',  title: 'Launched this website',
+  { id: 'tl-1', date: 'May 30, 2026',  title: 'Launched this website',
     desc: 'Just a portfolio and place to house my thoughts, made after a handful of iterations.' },
-  { id: 'tl-2', date: 'April 2026', title: 'Won gold at NYSSMA majors',
+  { id: 'tl-2', date: 'May 20, 2026', title: 'Won gold at NYSSMA majors',
     desc: 'Should be the first of many.' },
   { id: 'tl-3', date: 'October 10, 2010', title: 'Where it all began', desc: '' },
 ];
