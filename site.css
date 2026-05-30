@@ -1,0 +1,39 @@
+/* Neil Kaji site — base + responsive. Loaded on every page after colors_and_type.css. */
+
+html, body { margin: 0; padding: 0; }
+body { background: var(--color-surface-canvas); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* Single React root becomes the page column so the contact bar sits at the bottom. */
+#root { display: flex; flex-direction: column; min-height: 100vh; }
+main { flex: 1 0 auto; }
+
+* { box-sizing: border-box; }
+
+::selection { background: var(--color-primary-100); color: var(--color-ink-primary); }
+
+/* Editable affordance on hover while in edit mode (outline handled inline). */
+[data-editable]:focus { outline: 1px solid var(--color-primary-500) !important; outline-offset: 3px; }
+
+/* image-slot inherits radius from its wrapper; keep it filling the box. */
+image-slot { display: block; }
+
+/* ── Responsive collapse — these override the inline grid styles ─────────────── */
+@media (max-width: 880px) {
+  .nk-hero-split { grid-template-columns: 1fr !important; gap: 36px !important; min-height: 0 !important; }
+  .nk-hero-split > div:last-child { max-width: 420px; }
+  .nk-bio-teaser { grid-template-columns: 1fr !important; }
+  .nk-contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .nk-blog-row { grid-template-columns: 130px 1fr !important; gap: 20px !important; }
+  .nk-blog-row > span { display: none !important; }
+}
+@media (max-width: 600px) {
+  .nk-tl-compact-row { grid-template-columns: 1fr !important; gap: 4px !important; }
+  .nk-blog-row { grid-template-columns: 1fr !important; gap: 6px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes nk-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes nk-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
