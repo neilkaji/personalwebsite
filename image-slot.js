@@ -266,7 +266,10 @@
       this._subFn = () => this._render();
       // Shadow-DOM listeners live with the shadow DOM — bound once here so
       // disconnect/reconnect (e.g. React remount) doesn't stack handlers.
-      this._empty.addEventListener('click', () => this._input.click());
+      this._empty.addEventListener('click', () => {
+        if (!this._isEditable()) return;
+        this._input.click();
+      });
       root.addEventListener('click', (e) => {
         const act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
         if (act === 'replace') { this._exitReframe(true); this._input.click(); }
@@ -389,6 +392,7 @@
       this.addEventListener('dragleave', this);
       this.addEventListener('drop', this);
       subs.add(this._subFn);
+      if (window.editStore) this._editUnsub = window.editStore.sub(() => this._render());
       // width%/height% in _applyView encode the frame aspect at call time —
       // a host resize (responsive grid, pane divider) would stretch the
       // image until the next _render. Re-render on size change: _render()
@@ -403,6 +407,7 @@
 
     disconnectedCallback() {
       subs.delete(this._subFn);
+      if (this._editUnsub) { this._editUnsub(); this._editUnsub = null; }
       this.removeEventListener('dragenter', this);
       this.removeEventListener('dragover', this);
       this.removeEventListener('dragleave', this);
@@ -441,9 +446,14 @@
 
     attributeChangedCallback() { if (this.shadowRoot) this._render(); }
 
+    _isEditable() {
+      return !!(window.editStore && window.editStore.unlocked);
+    }
+
     // handleEvent — one listener object for all four drag events keeps the
     // add/remove symmetric and the depth counter correct.
     handleEvent(e) {
+      if (!this._isEditable()) return;
       if (e.type === 'dragenter' || e.type === 'dragover') {
         // Without preventDefault the browser never fires 'drop'.
         e.preventDefault();
@@ -591,10 +601,11 @@
       this._ring.style.borderRadius = mask ? '' : radius;
       this._ring.style.display = mask ? 'none' : '';
 
-      // Controls and reframe entry gate on this so share links stay read-only.
-      const editable = !!(window.omelette && window.omelette.writeFile);
+      // Controls and reframe entry gate on this — only the site owner (unlocked edit mode) can add images.
+      const editable = this._isEditable();
       this.toggleAttribute('data-editable', editable);
       this._sub.style.display = editable ? '' : 'none';
+      this._empty.style.cursor = editable ? 'pointer' : 'default';
 
       // Content. The sidecar is also writable by the agent's write_file
       // tool, so its value isn't guaranteed canvas-originated — only accept

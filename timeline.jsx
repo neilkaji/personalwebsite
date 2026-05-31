@@ -13,7 +13,7 @@ function TimelineApp() {
             <Editable id="tlpage-head" text="How I got here" />
           </h1>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--color-ink-secondary)', marginTop: 16, maxWidth: 600 }}>
-            <Editable id="tlpage-intro" text="Every milestone with a date and one honest sentence. Newest first. Click any line to rewrite it." multiline />
+            <Editable id="tlpage-intro" text="Every milestone with a date and one honest sentence. Newest first." multiline />
           </p>
         </Container>
         <Container style={{ paddingBottom: 'var(--nk-section-pad, 96px)' }}>
