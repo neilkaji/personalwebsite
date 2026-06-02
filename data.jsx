@@ -9,6 +9,8 @@
 
 /* ── Timeline ── most recent first ─────────────────────────────────────────── */
 const TIMELINE = [
+  { id: 'tl-4', date: 'May 31, 2026', title: 'First user feeback on app ideas',
+    desc: 'Gathered initial feedback on app ideas that I would build over the summer, which yieled helpful information.' },
   { id: 'tl-1', date: 'May 30, 2026',  title: 'Launched this website',
     desc: 'Just a portfolio and place to house my thoughts, made after a handful of iterations.' },
   { id: 'tl-2', date: 'May 20, 2026', title: 'Won gold at NYSSMA majors',
