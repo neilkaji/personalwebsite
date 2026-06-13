@@ -46,14 +46,38 @@ function Hero({ layout }) {
     );
   }
 
-  // 'statement' (default) — text-forward, numbers-first
+  // 'statement' (default) — editorial, centered, big type
   return (
     <Container style={{ paddingTop: 24 }}>
-      <div style={{ minHeight: 'calc(88vh - 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 860 }}>
-        <p className="overline" style={{ margin: 0 }}>{overline}</p>
-        <h1 style={{ fontSize: 'clamp(2.6rem, 6.5vw, 4.25rem)', fontWeight: 700, lineHeight: 1.04, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 16 }}>{head}</h1>
-        <p style={{ fontSize: 19, lineHeight: 1.7, color: 'var(--color-ink-secondary)', maxWidth: 560, marginTop: 24 }}>{sub}</p>
-        {ctas}
+      <div style={{ minHeight: 'calc(90vh - 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+
+        {/* Rule + location overline */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18, width: '100%', maxWidth: 680, marginBottom: 24 }}>
+          <div style={{ flex: 1, height: 1, background: 'var(--color-ink-primary)', opacity: 0.12 }} />
+          <p className="overline" style={{ margin: 0, letterSpacing: '0.14em' }}>{overline}</p>
+          <div style={{ flex: 1, height: 1, background: 'var(--color-ink-primary)', opacity: 0.12 }} />
+        </div>
+
+        {/* Giant name */}
+        <h1 style={{ fontSize: 'clamp(4.5rem, 13vw, 9.5rem)', fontWeight: 700, lineHeight: 0.9, letterSpacing: '-0.04em', color: 'var(--color-ink-primary)', margin: 0 }}>{head}</h1>
+
+        {/* Editorial descriptor strip */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 22, padding: '11px 0', borderTop: '1px solid var(--color-surface-border)', borderBottom: '1px solid var(--color-surface-border)', width: '100%', maxWidth: 520, justifyContent: 'center' }}>
+          <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Building</span>
+          <span style={{ color: 'var(--color-primary-500)', fontWeight: 700, fontSize: 13, lineHeight: 1 }}>×</span>
+          <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Creating</span>
+          <span style={{ color: 'var(--color-primary-500)', fontWeight: 700, fontSize: 13, lineHeight: 1 }}>×</span>
+          <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Shipping</span>
+        </div>
+
+        {/* Subtitle */}
+        <p style={{ fontSize: 20, lineHeight: 1.7, color: 'var(--color-ink-secondary)', maxWidth: 460, marginTop: 28 }}>{sub}</p>
+
+        {/* CTAs */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 36, justifyContent: 'center' }}>
+          <Button size="lg" href="#timeline-preview">See the timeline <Icon name="arrow-right" size={18} /></Button>
+          <Button size="lg" variant="secondary" href="#contact">Get in touch</Button>
+        </div>
       </div>
     </Container>
   );
