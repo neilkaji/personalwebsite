@@ -26,10 +26,6 @@ function BioApp() {
               <p style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--color-ink-secondary)' }}>
                 <Editable id="bio-p1" text="I'm a high school student and entrepreneur that wants to make an impact on the world. I make content on social media and build what comes to mind." multiline />
               </p>
-              <p style={{ fontSize: 17, lineHeight: 1.75, color: 'var(--color-ink-secondary)' }}>
-                <Editable id="bio-p3" text="I play the viola, soccer, and some video games as well. " multiline />
-              </p>
-
             </div>
           </div>
         </Container>
