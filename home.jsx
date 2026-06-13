@@ -70,10 +70,10 @@ function BioTeaser() {
           <div>
             <p className="overline" style={{ margin: 0 }}><Editable id="home-about-overline" text="About" /></p>
             <h2 style={{ fontSize: 'clamp(1.6rem,4vw,2rem)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 12 }}>
-              <Editable id="home-about-head" text="Fifteen. Westchester. I learn by building." />
+              <Editable id="home-about-head" text="Fifteen, Westchester." />
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--color-ink-secondary)', marginTop: 16, maxWidth: 480 }}>
-              <Editable id="home-about-body" text="I love the thrill of failing when the lights are too bright.  That feeling is what I live for." multiline />
+              <Editable id="home-about-body" text="I want to make an impact on the world." multiline />
             </p>
             <div style={{ marginTop: 24 }}>
               <Button variant="secondary" href="bio.html">Read the full bio <Icon name="arrow-right" size={16} /></Button>
