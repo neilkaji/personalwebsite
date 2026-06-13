@@ -4,7 +4,6 @@
 function Hero({ layout }) {
   const overline = <Editable id="hero-overline" text="Westchester · 15 y/o" />;
   const head = <Editable id="hero-head" text="Neil Kaji" multiline />;
-  const sub = <Editable id="hero-sub" text="Building and creating" multiline />;
   const ctas = (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32 }}>
       <Button size="lg" href="#timeline-preview">See the timeline <Icon name="arrow-right" size={18} /></Button>
@@ -19,7 +18,6 @@ function Hero({ layout }) {
           <div>
             <p className="overline" style={{ margin: 0 }}>{overline}</p>
             <h1 style={{ fontSize: 'clamp(2.4rem, 5.5vw, 3.75rem)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 16 }}>{head}</h1>
-            <p style={{ fontSize: 18, lineHeight: 1.7, color: 'var(--color-ink-secondary)', maxWidth: 480, marginTop: 22 }}>{sub}</p>
             {ctas}
           </div>
           <div style={{ width: '100%', aspectRatio: '4 / 5', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--color-surface-border)' }}>
@@ -36,7 +34,6 @@ function Hero({ layout }) {
         <div style={{ minHeight: 'calc(78vh - 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
           <p className="overline" style={{ margin: 0 }}>{overline}</p>
           <h1 style={{ fontSize: 'clamp(2.4rem, 6vw, 4rem)', fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 18, maxWidth: 760 }}>{head}</h1>
-          <p style={{ fontSize: 18, lineHeight: 1.7, color: 'var(--color-ink-secondary)', maxWidth: 520, marginTop: 22 }}>{sub}</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 32, justifyContent: 'center' }}>
             <Button size="lg" href="#timeline-preview">See the timeline <Icon name="arrow-right" size={18} /></Button>
             <Button size="lg" variant="secondary" href="#contact">Get in touch</Button>
@@ -69,9 +66,6 @@ function Hero({ layout }) {
           <span style={{ color: 'var(--color-primary-500)', fontWeight: 700, fontSize: 13, lineHeight: 1 }}>×</span>
           <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Shipping</span>
         </div>
-
-        {/* Subtitle */}
-        <p style={{ fontSize: 20, lineHeight: 1.7, color: 'var(--color-ink-secondary)', maxWidth: 460, marginTop: 28 }}>{sub}</p>
 
         {/* CTAs */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: 36, justifyContent: 'center' }}>
