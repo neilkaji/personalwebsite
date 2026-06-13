@@ -13,7 +13,10 @@ function BioApp() {
       <Nav />
       <main>
         <Container style={{ paddingTop: 'var(--nk-section-pad-sm, 64px)', paddingBottom: 'var(--nk-section-pad, 96px)' }}>
-          <p className="overline" style={{ margin: 0 }}><Editable id="biopage-overline" text="Bio" /></p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <p className="overline" style={{ margin: 0 }}><Editable id="biopage-overline" text="Bio" /></p>
+            <div style={{ flex: 1, height: 1, background: 'var(--color-ink-primary)', opacity: 0.1 }} />
+          </div>
           <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3rem)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 14, maxWidth: 720 }}>
             <Editable id="biopage-head" text="Fifteen years old. Westchester. I learn by building." multiline />
           </h1>

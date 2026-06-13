@@ -62,7 +62,7 @@ function Hero({ layout }) {
         <h1 style={{ fontSize: 'clamp(4.5rem, 13vw, 9.5rem)', fontWeight: 700, lineHeight: 0.9, letterSpacing: '-0.04em', color: 'var(--color-ink-primary)', margin: 0 }}>{head}</h1>
 
         {/* Editorial descriptor strip */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 22, padding: '11px 0', borderTop: '1px solid var(--color-surface-border)', borderBottom: '1px solid var(--color-surface-border)', width: '100%', maxWidth: 520, justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 36, padding: '11px 0', borderTop: '1px solid var(--color-surface-border)', borderBottom: '1px solid var(--color-surface-border)', width: '100%', maxWidth: 520, justifyContent: 'center' }}>
           <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Building</span>
           <span style={{ color: 'var(--color-primary-500)', fontWeight: 700, fontSize: 13, lineHeight: 1 }}>×</span>
           <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-secondary)' }}>Creating</span>

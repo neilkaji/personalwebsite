@@ -7,7 +7,10 @@ function SectionHeader({ overlineId, overline, headId, head, link, linkLabel }) 
   return (
     <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
       <div>
-        <p className="overline" style={{ margin: 0 }}><Editable id={overlineId} text={overline} /></p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ width: 20, height: 1.5, background: 'var(--color-primary-500)', opacity: 0.75, flexShrink: 0 }} />
+          <p className="overline" style={{ margin: 0 }}><Editable id={overlineId} text={overline} /></p>
+        </div>
         <h2 style={{ fontSize: 'clamp(1.6rem, 4vw, 2rem)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--color-ink-primary)', marginTop: 12 }}>
           <Editable id={headId} text={head} />
         </h2>
