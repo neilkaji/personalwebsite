@@ -154,6 +154,16 @@ function App() {
             <InspirationGrid items={window.INSPIRATIONS.slice(0, 3)} />
           </div>
         </SectionBlock>
+
+        <SectionBlock id="portfolio-preview" surface>
+          <SectionHeader
+            overlineId="home-portfolio-overline" overline="Work"
+            headId="home-portfolio-head" head="Portfolio"
+            link="portfolio.html" linkLabel="See all" />
+          <div style={{ marginTop: 36 }}>
+            <PortfolioGrid items={window.PORTFOLIO.slice(0, 3)} />
+          </div>
+        </SectionBlock>
       </main>
 
       <ContactBar />

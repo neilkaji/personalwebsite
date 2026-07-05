@@ -208,4 +208,34 @@ function InspirationGrid({ items }) {
   );
 }
 
-Object.assign(window, { SectionHeader, TimelineList, BlogList, BlogCard, BlogRow, InspirationGrid, PostMeta });
+/* ── Portfolio ───────────────────────────────────────────────────────────────*/
+function PortfolioGrid({ items }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 8 }}>
+      {items.map((it, i) => (
+        <Reveal key={it.id} delay={Math.min(i, 3) * 60} style={{ height: '100%' }}>
+          <div style={{
+            background: 'var(--color-surface-1)', border: '1px solid var(--color-surface-border)', borderRadius: 8,
+            overflow: 'hidden', height: '100%', boxSizing: 'border-box',
+            display: 'flex', flexDirection: 'column',
+          }}>
+            <div style={{ width: '100%', aspectRatio: '4 / 3' }}>
+              <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+            </div>
+            <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
+              <span className="overline" style={{ color: 'var(--color-primary-600)' }}><Editable id={it.id + '-category'} text={it.category} /></span>
+              <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink-primary)', marginTop: 10 }}>
+                <Editable id={it.id + '-title'} text={it.title} />
+              </h3>
+              <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginTop: 8 }}>
+                <Editable id={it.id + '-desc'} text={it.desc} multiline />
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+Object.assign(window, { SectionHeader, TimelineList, BlogList, BlogCard, BlogRow, InspirationGrid, PortfolioGrid, PostMeta });

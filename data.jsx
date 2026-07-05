@@ -69,8 +69,16 @@ const INSPIRATIONS = [
   { id: 'insp-1', name: 'Matthew Park', kind: 'Person',
     note: 'A 15 year old entrepreneur who is only a few days younger than me- he is absolutely cracked.' },
   { id: 'insp-2', name: 'Gon (HxH)', kind: 'Character', note: 'His determination is absolutely oustanding and genuinely eye-opening.' },
-  { id: 'insp-4', name: 'Thorfinn (VS)', kind: 'Character',
-    note: 'I have no enemies.' },
 ];
 
-Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS });
+/* ── Portfolio ── most recent first ────────────────────────────────────────── */
+const PORTFOLIO = [
+  { id: 'port-1', title: 'Project title', category: 'Category',
+    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
+  { id: 'port-2', title: 'Project title', category: 'Category',
+    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
+  { id: 'port-3', title: 'Project title', category: 'Category',
+    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
+];
+
+Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS, PORTFOLIO });

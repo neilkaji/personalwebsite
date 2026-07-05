@@ -17,6 +17,7 @@ function Nav() {
     { href: 'index.html', label: 'Home' },
     { href: 'timeline.html', label: 'Timeline' },
     { href: 'blog.html', label: 'Blog' },
+    { href: 'portfolio.html', label: 'Portfolio' },
     { href: 'inspirations.html', label: 'Inspirations' },
     { href: 'bio.html', label: 'Bio' },
   ];
