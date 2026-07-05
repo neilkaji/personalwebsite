@@ -72,13 +72,6 @@ const INSPIRATIONS = [
 ];
 
 /* ── Portfolio ── most recent first ────────────────────────────────────────── */
-const PORTFOLIO = [
-  { id: 'port-1', title: 'Project title', category: 'Category',
-    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
-  { id: 'port-2', title: 'Project title', category: 'Category',
-    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
-  { id: 'port-3', title: 'Project title', category: 'Category',
-    desc: 'A short description of the project — what it does, what you built, and why it mattered. Replace this with your real project details.' },
-];
+const PORTFOLIO = [];
 
 Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS, PORTFOLIO });

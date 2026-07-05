@@ -210,6 +210,18 @@ function InspirationGrid({ items }) {
 
 /* ── Portfolio ───────────────────────────────────────────────────────────────*/
 function PortfolioGrid({ items }) {
+  if (!items || items.length === 0) {
+    return (
+      <div style={{
+        background: 'var(--color-surface-1)', border: '1px solid var(--color-surface-border)', borderRadius: 8,
+        padding: '40px 24px', marginTop: 8, textAlign: 'center',
+      }}>
+        <p style={{ fontSize: 16, lineHeight: 1.7, color: 'var(--color-ink-secondary)', margin: 0 }}>
+          <Editable id="portfolio-empty" text="Nothing here yet, check back soon" />
+        </p>
+      </div>
+    );
+  }
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginTop: 8 }}>
       {items.map((it, i) => (
