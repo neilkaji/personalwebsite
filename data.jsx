@@ -77,7 +77,8 @@ const INSPIRATIONS = [
 const PORTFOLIO = [
   { id: 'proj-1', category: 'Web App', title: 'Quantum Playground', date: 'July 7, 2026',
     url: 'https://quantum-playground-mocha.vercel.app/#/start',
-    desc: 'I am in the trenches of quantum computing research, but when I first started I found it very difficult to understand the most basic topics. The high level math and concepts that were required to understand quantum computing were simply beyond me, and I still find them to be the most daunting part of this research. To remedy this, I built a heavily interactive app that should help complete beginners learn the linear algebra and quantum ideas needed to dive into quantum computing with as low of a skill requirement as possible.' },
+    desc: 'An interactive web app to teach beginners the basics of quantum computing.',
+    descFull: 'An interactive web app to teach beginners the basics of quantum computing. I am in the trenches of quantum computing research, but when I first started I found it very difficult to understand the most basic topics. The high level math and concepts that were required to understand quantum computing were simply beyond me, and I still find them to be the most daunting part of this research. To remedy this, I built a heavily interactive app that should help complete beginners learn the linear algebra and quantum ideas needed to dive into quantum computing with as low of a skill requirement as possible.' },
 ];
 
 Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS, PORTFOLIO });

@@ -223,40 +223,57 @@ function PortfolioGrid({ items }) {
     );
   }
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 300px))', justifyContent: 'start', gap: 24, marginTop: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 360px))', justifyContent: 'start', gap: 24, marginTop: 8 }}>
       {items.map((it, i) => (
         <Reveal key={it.id} delay={Math.min(i, 3) * 60} style={{ height: '100%' }}>
-          <div style={{
-            background: 'var(--color-surface-1)', border: '1px solid var(--color-surface-border)', borderRadius: 8,
-            overflow: 'hidden', height: '100%', boxSizing: 'border-box',
-            display: 'flex', flexDirection: 'column',
-          }}>
-            <div style={{ width: '100%', aspectRatio: '1937 / 461' }}>
-              <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
-            </div>
-            <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-                <span className="overline" style={{ color: 'var(--color-primary-600)' }}><Editable id={it.id + '-category'} text={it.category} /></span>
-                <span style={{ fontSize: 13, color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}><Editable id={it.id + '-date'} text={it.date} /></span>
-              </div>
-              <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink-primary)', marginTop: 10 }}>
-                <Editable id={it.id + '-title'} text={it.title} />
-              </h3>
-              <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginTop: 8 }}>
-                <Editable id={it.id + '-desc'} text={it.desc} multiline />
-              </p>
-              {it.url && (
-                <a href={it.url} target="_blank" rel="noopener noreferrer" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 500,
-                  color: 'var(--color-primary-500)', marginTop: 'auto', paddingTop: 16, whiteSpace: 'nowrap',
-                }}>
-                  Visit site <Icon name="arrow-right" size={15} />
-                </a>
-              )}
-            </div>
-          </div>
+          <PortfolioCard it={it} />
         </Reveal>
       ))}
+    </div>
+  );
+}
+
+function PortfolioCard({ it }) {
+  const [expanded, setExpanded] = React.useState(false);
+  return (
+    <div style={{
+      background: 'var(--color-surface-1)', border: '1px solid var(--color-surface-border)', borderRadius: 8,
+      overflow: 'hidden', height: '100%', boxSizing: 'border-box',
+      display: 'flex', flexDirection: 'column',
+    }}>
+      <div style={{ width: '100%', aspectRatio: '1867 / 583' }}>
+        <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+      </div>
+      <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+          <span className="overline" style={{ color: 'var(--color-primary-600)' }}><Editable id={it.id + '-category'} text={it.category} /></span>
+          <span style={{ fontSize: 13, color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}><Editable id={it.id + '-date'} text={it.date} /></span>
+        </div>
+        <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink-primary)', marginTop: 10 }}>
+          <Editable id={it.id + '-title'} text={it.title} />
+        </h3>
+        <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginTop: 8 }}>
+          {expanded
+            ? <Editable id={it.id + '-descFull'} text={it.descFull || it.desc} multiline />
+            : <Editable id={it.id + '-desc'} text={it.desc} multiline />}
+        </p>
+        {it.descFull && (
+          <button onClick={() => setExpanded((e) => !e)} style={{
+            appearance: 'none', border: 0, background: 'none', padding: 0, marginTop: 8, cursor: 'pointer',
+            alignSelf: 'flex-start', fontSize: 13.5, fontWeight: 600, color: 'var(--color-primary-600)',
+          }}>
+            {expanded ? 'Show less' : 'Show more'}
+          </button>
+        )}
+        {it.url && (
+          <a href={it.url} target="_blank" rel="noopener noreferrer" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 500,
+            color: 'var(--color-primary-500)', marginTop: 'auto', paddingTop: 16, whiteSpace: 'nowrap',
+          }}>
+            Visit site <Icon name="arrow-right" size={15} />
+          </a>
+        )}
+      </div>
     </div>
   );
 }
