@@ -128,10 +128,21 @@ function App() {
         <SectionBlock id="timeline-preview">
           <SectionHeader
             overlineId="home-tl-overline" overline="The path"
-            headId="home-tl-head" head="Timeline"
-            link="timeline.html" linkLabel="Full timeline" />
-          <div style={{ marginTop: 36 }}>
+            headId="home-tl-head" head="Timeline" />
+          <div style={{ position: 'relative', marginTop: 36 }}>
             <TimelineList items={window.TIMELINE.slice(0, 5)} style={t.timelineStyle} />
+            <div aria-hidden="true" style={{
+              position: 'absolute', left: 0, right: 0, bottom: 0, height: 150, pointerEvents: 'none',
+              background: 'linear-gradient(to bottom, transparent, var(--color-surface-canvas))',
+            }} />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
+            <a href="timeline.html" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              fontSize: 14, fontWeight: 500, color: 'var(--color-primary-500)',
+            }}>
+              Full timeline <Icon name="arrow-right" size={16} />
+            </a>
           </div>
         </SectionBlock>
 
