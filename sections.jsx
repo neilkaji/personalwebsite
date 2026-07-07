@@ -231,8 +231,10 @@ function PortfolioGrid({ items }) {
             overflow: 'hidden', height: '100%', boxSizing: 'border-box',
             display: 'flex', flexDirection: 'column',
           }}>
-            <div style={{ width: '100%', aspectRatio: '4 / 3' }}>
-              <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+            <div style={{ padding: '24px 24px 0', display: 'flex', justifyContent: 'center' }}>
+              <div style={{ width: '58%', maxWidth: 170, aspectRatio: '1 / 1' }}>
+                <image-slot id={it.id + '-image'} shape="rounded" radius="10" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+              </div>
             </div>
             <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
