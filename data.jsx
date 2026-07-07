@@ -9,6 +9,8 @@
 
 /* ── Timeline ── most recent first ─────────────────────────────────────────── */
 const TIMELINE = [
+  { id: 'tl-6', date: 'July 7, 2026', title: 'First web app: Quantum Playground',
+    desc: "Published my first web app to teach complete beginners learn the basics of quantum computing. It's what I would've wanted a few months ago." },
   { id: 'tl-5', date: 'June 6, 2026', title: 'Won 1st place for Physics at Somers Science Fair',
     desc: 'Managed to place above 40 kids in my category and win an award for my proposed quantum computing research.' },
   { id: 'tl-4', date: 'May 31, 2026', title: 'First user feedback on app ideas',
