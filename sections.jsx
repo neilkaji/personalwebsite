@@ -235,13 +235,24 @@ function PortfolioGrid({ items }) {
               <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
             </div>
             <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
-              <span className="overline" style={{ color: 'var(--color-primary-600)' }}><Editable id={it.id + '-category'} text={it.category} /></span>
+              <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+                <span className="overline" style={{ color: 'var(--color-primary-600)' }}><Editable id={it.id + '-category'} text={it.category} /></span>
+                <span style={{ fontSize: 13, color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}><Editable id={it.id + '-date'} text={it.date} /></span>
+              </div>
               <h3 style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink-primary)', marginTop: 10 }}>
                 <Editable id={it.id + '-title'} text={it.title} />
               </h3>
               <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginTop: 8 }}>
                 <Editable id={it.id + '-desc'} text={it.desc} multiline />
               </p>
+              {it.url && (
+                <a href={it.url} target="_blank" rel="noopener noreferrer" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 500,
+                  color: 'var(--color-primary-500)', marginTop: 'auto', paddingTop: 16, whiteSpace: 'nowrap',
+                }}>
+                  Visit site <Icon name="arrow-right" size={15} />
+                </a>
+              )}
             </div>
           </div>
         </Reveal>
