@@ -231,7 +231,7 @@ function PortfolioGrid({ items }) {
             overflow: 'hidden', height: '100%', boxSizing: 'border-box',
             display: 'flex', flexDirection: 'column',
           }}>
-            <div style={{ width: '100%', aspectRatio: '183 / 88' }}>
+            <div style={{ width: '100%', aspectRatio: '1937 / 461' }}>
               <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
             </div>
             <div style={{ padding: 'var(--nk-card-pad, 24px)', display: 'flex', flexDirection: 'column', flex: 1 }}>
