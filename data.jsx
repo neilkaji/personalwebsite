@@ -72,6 +72,9 @@ const INSPIRATIONS = [
 ];
 
 /* ── Portfolio ── most recent first ────────────────────────────────────────── */
-const PORTFOLIO = [];
+const PORTFOLIO = [
+  { id: 'proj-1', category: 'Educational app', title: 'Quantum Playground', /* July 7, 2026 */
+    desc: 'I am in the trenches of quantum computing research, but when I first started I found it very difficult to understand the most basic topics. The high level math and concepts that were required to understand quantum computing were simply beyond me, and I still find them to be the most daunting part of this research. To remedy this, I built a heavily interactive app that should help complete beginners learn the linear algebra and quantum ideas needed to dive into quantum computing with as low of a skill requirement as possible.' },
+];
 
 Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS, PORTFOLIO });
