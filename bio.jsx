@@ -18,7 +18,7 @@ function BioApp() {
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,0.7fr) minmax(0,1.3fr)', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'start', marginTop: 64 }} className="nk-bio-teaser">
             <Reveal>
               <div style={{ width: '100%', aspectRatio: '4 / 5', overflow: 'hidden', borderTop: '1px solid var(--color-surface-border)', position: 'sticky', top: 'calc(var(--nk-nav-h, 52px) + 24px)' }}>
-                <image-slot id="bio-portrait" shape="rect" placeholder="Drop a portrait" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+                <img src="images/portrait.jpg" alt="Neil Kaji" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
               </div>
             </Reveal>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
