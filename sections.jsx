@@ -116,7 +116,7 @@ function BlogList({ posts, style = 'rows', onOpen }) {
     return (
       <div style={{ padding: '56px 0', borderTop: '1px solid var(--color-surface-border)' }}>
         <p style={{ fontSize: 15, color: 'var(--color-ink-muted)', margin: 0, fontStyle: 'italic' }}>
-          <Editable id="blog-empty" text="Nothing yet — check back soon." />
+          <Editable id="blog-empty" text="Check back soon." />
         </p>
       </div>
     );
@@ -181,10 +181,12 @@ function PortfolioCard({ it }) {
   const [expanded, setExpanded] = React.useState(false);
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div style={{ width: '100%', aspectRatio: '1867 / 583', overflow: 'hidden', borderTop: '1px solid var(--color-surface-border)' }}>
-        <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
-      </div>
-      <div style={{ paddingTop: 16 }}>
+      {!it.hideImage && (
+        <div style={{ width: '100%', aspectRatio: '1867 / 583', overflow: 'hidden', borderTop: '1px solid var(--color-surface-border)' }}>
+          <image-slot id={it.id + '-image'} shape="rect" placeholder="Drop a project image" style={{ width: '100%', height: '100%', display: 'block' }}></image-slot>
+        </div>
+      )}
+      <div style={{ paddingTop: 16, borderTop: it.hideImage ? '1px solid var(--color-surface-border)' : 'none' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
           <span className="overline">
             <Editable id={it.id + '-category'} text={it.category} />
