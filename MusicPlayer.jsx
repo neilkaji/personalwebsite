@@ -13,7 +13,7 @@ const NKPlayer = (function () {
   const SRC = 'audio/Raindance.mp3';
   const TITLE = 'Raindance';
   const TIME_KEY = 'nk:player:time';
-  const PLAY_KEY = 'nk:player:playing';
+  const INTENT_KEY = 'nk:player:intent'; // only written by user clicks, not media events
   const PRIMARY = '#3A3D52';
   const BARS = 5;
 
@@ -31,7 +31,7 @@ const NKPlayer = (function () {
     } catch (e) { return 'navigate'; }
   })();
   if (navType === 'reload') {
-    try { sessionStorage.removeItem(TIME_KEY); sessionStorage.removeItem(PLAY_KEY); } catch (e) {}
+    try { sessionStorage.removeItem(TIME_KEY); sessionStorage.removeItem(INTENT_KEY); } catch (e) {}
   }
 
   function MusicPlayer() {
@@ -50,7 +50,15 @@ const NKPlayer = (function () {
       try { await audioRef.current.play(); } catch (e) {}
     };
     const pause = () => { try { audioRef.current.pause(); } catch (e) {} };
-    const toggle = () => { playing ? pause() : play(); };
+    const toggle = () => {
+      if (playing) {
+        pause();
+        try { sessionStorage.setItem(INTENT_KEY, '0'); } catch (e) {}
+      } else {
+        play();
+        try { sessionStorage.setItem(INTENT_KEY, '1'); } catch (e) {}
+      }
+    };
 
     // ── carry track across in-site navigation; reset on full refresh ─────────
     useEffect(() => {
@@ -62,39 +70,34 @@ const NKPlayer = (function () {
       try {
         const t = parseFloat(sessionStorage.getItem(TIME_KEY));
         if (!isNaN(t)) a.currentTime = t;
-        resume = sessionStorage.getItem(PLAY_KEY) === '1';
+        // Read user's *intent*, not the live play state — page-unload pauses
+        // would otherwise overwrite PLAY_KEY to '0' before navigation completes.
+        resume = sessionStorage.getItem(INTENT_KEY) === '1';
       } catch (e) {}
       if (resume) {
-        // The link click that loaded this page counts as a user gesture, so
-        // playback is generally allowed; if a browser still blocks it, the
-        // track just stays paused at the restored position.
         a.play().catch(() => {});
       }
 
-      // Indicator is driven straight off the media element so it always
-      // reflects reality (covers ended, stalls, external pauses, etc).
+      // Sync UI indicator from media element events (but don't touch INTENT_KEY —
+      // that's only written when the user explicitly clicks the button).
       const sync = () => setPlaying(!a.paused && !a.ended);
       const onTime = () => {
         try { sessionStorage.setItem(TIME_KEY, String(a.currentTime)); } catch (e) {}
       };
-      const onPlayState = () => {
-        sync();
-        try { sessionStorage.setItem(PLAY_KEY, (!a.paused && !a.ended) ? '1' : '0'); } catch (e) {}
-      };
-      a.addEventListener('play', onPlayState);
-      a.addEventListener('playing', onPlayState);
-      a.addEventListener('pause', onPlayState);
-      a.addEventListener('ended', onPlayState);
+      a.addEventListener('play', sync);
+      a.addEventListener('playing', sync);
+      a.addEventListener('pause', sync);
+      a.addEventListener('ended', sync);
       a.addEventListener('timeupdate', onTime);
       sync();
 
       requestAnimationFrame(() => setMounted(true));
 
       return () => {
-        a.removeEventListener('play', onPlayState);
-        a.removeEventListener('playing', onPlayState);
-        a.removeEventListener('pause', onPlayState);
-        a.removeEventListener('ended', onPlayState);
+        a.removeEventListener('play', sync);
+        a.removeEventListener('playing', sync);
+        a.removeEventListener('pause', sync);
+        a.removeEventListener('ended', sync);
         a.removeEventListener('timeupdate', onTime);
       };
     }, []);
