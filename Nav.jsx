@@ -18,12 +18,8 @@ function currentPage() {
   return p === '' ? 'index.html' : p;
 }
 
-/* ── PageNav — back button + vertical side nav for inner pages ───────────────*/
+/* ── PageNav — back button for inner pages ───────────────────────────────────*/
 function PageNav() {
-  const unlocked = useEditUnlocked();
-  const editing = useEditMode();
-  const current = currentPage();
-
   const goBack = (e) => {
     e.preventDefault();
     if (history.length > 1) history.back();
@@ -31,67 +27,15 @@ function PageNav() {
   };
 
   return (
-    <div className="nk-sidenav" style={{
-      position: 'fixed', left: 0, top: 0, bottom: 0, width: 60,
-      zIndex: 40, display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center',
-      pointerEvents: 'none',
-    }}>
-      {/* Back */}
-      <a href="index.html" onClick={goBack} style={{
-        position: 'absolute', top: 28, left: '50%', transform: 'translateX(-50%)',
-        pointerEvents: 'auto',
-        fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
-        color: 'var(--color-ink-muted)', textDecoration: 'none',
-        opacity: 0.55, transition: 'opacity 200ms ease',
-        whiteSpace: 'nowrap', writingMode: 'horizontal-tb',
-      }}
-        onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-        onMouseLeave={(e) => e.currentTarget.style.opacity = '0.55'}
-        aria-label="Back"
-      >←</a>
-
-      {/* Page links */}
-      <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, pointerEvents: 'auto' }}>
-        {NAV_ITEMS.map((it) => {
-          const active = current === it.href;
-          return (
-            <a key={it.href} href={it.href} title={it.label} style={{
-              fontSize: 9, letterSpacing: '0.14em', textTransform: 'uppercase',
-              color: active ? 'var(--color-ink-primary)' : 'var(--color-ink-muted)',
-              opacity: active ? 1 : 0.45,
-              textDecoration: 'none',
-              writingMode: 'vertical-rl',
-              transform: 'rotate(180deg)',
-              transition: 'opacity 200ms ease, color 200ms ease',
-            }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-              onMouseLeave={(e) => { if (!active) e.currentTarget.style.opacity = '0.45'; }}
-            >{it.label}</a>
-          );
-        })}
-      </nav>
-
-      {/* Edit toggle — owner only */}
-      {unlocked && (
-        <button
-          onClick={() => editStore.toggle()}
-          title={editing ? 'Done editing' : 'Edit this site'}
-          style={{
-            position: 'absolute', bottom: 28,
-            pointerEvents: 'auto',
-            appearance: 'none', border: '1px solid var(--color-surface-border)',
-            background: editing ? 'var(--color-ink-primary)' : 'transparent',
-            color: editing ? 'var(--color-ink-inverse)' : 'var(--color-ink-muted)',
-            fontFamily: 'var(--font-base)',
-            fontSize: 9, letterSpacing: '0.1em', textTransform: 'uppercase',
-            padding: '4px 7px', cursor: 'pointer',
-            transition: 'background 200ms ease, color 200ms ease',
-            opacity: 0.65,
-          }}
-        >{editing ? 'Done' : 'Edit'}</button>
-      )}
-    </div>
+    <a href="index.html" onClick={goBack} style={{
+      position: 'fixed', top: 28, left: 28, zIndex: 40,
+      fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase',
+      color: 'var(--color-ink-muted)', textDecoration: 'none',
+      opacity: 0.55, transition: 'opacity 200ms ease',
+    }}
+      onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+      onMouseLeave={(e) => e.currentTarget.style.opacity = '0.55'}
+    >← Back</a>
   );
 }
 
