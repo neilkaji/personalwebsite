@@ -1,19 +1,16 @@
 /* Neil Kaji site — shared library.
-   Primitives (Icon, Button, Badge), the inline-edit system (Editable + edit-mode
-   store), scroll Reveal, and read-only tweak helpers for non-home pages.
+   Primitives, inline-edit system, scroll Reveal, tweak helpers.
    Loaded on every page. Exports everything to window. */
 
 const { useState, useEffect, useRef, useCallback } = React;
 
-/* ── Tweaks (read side) ──────────────────────────────────────────────────────
-   Home owns the panel via useTweaks (tweaks-panel.jsx). Every page reads the
-   same localStorage key so layout choices stay consistent site-wide. */
+/* ── Tweaks (read side) ──────────────────────────────────────────────────────*/
 const TWEAK_DEFAULTS = {
-  heroLayout: 'statement',   // statement | split | minimal
-  timelineStyle: 'line',     // line | compact
-  blogStyle: 'cards',        // cards | rows
-  density: 'comfortable',    // comfortable | compact
-  fontScale: 100,            // 90–115
+  heroLayout:    'statement',
+  timelineStyle: 'line',
+  blogStyle:     'rows',
+  density:       'comfortable',
+  fontScale:     100,
 };
 function getTweaks() {
   try { return { ...TWEAK_DEFAULTS, ...JSON.parse(localStorage.getItem('nk:tweaks') || '{}') }; }
@@ -30,15 +27,11 @@ function useTweakValues() {
   return t;
 }
 
-/* ── Edit-mode store ─────────────────────────────────────────────────────────
-   Global toggle, persisted so it carries across page navigations. */
+/* ── Edit-mode store ─────────────────────────────────────────────────────────*/
 const EDIT_KEY = 'nk:editmode';
 const UNLOCK_KEY = 'nk:editunlock';
 const editStore = {
   on: (() => { try { return localStorage.getItem(EDIT_KEY) === '1'; } catch (e) { return false; } })(),
-  // Owner-only: editing tools stay hidden until the site owner unlocks them
-  // (via the ?edit URL param or the Cmd/Ctrl+Shift+E shortcut). Persisted so
-  // it carries across page loads on the owner's own browser.
   unlocked: (() => { try { return localStorage.getItem(UNLOCK_KEY) === '1'; } catch (e) { return false; } })(),
   listeners: new Set(),
   notify() { this.listeners.forEach((l) => l(this.on && this.unlocked)); },
@@ -61,7 +54,6 @@ const editStore = {
   },
   sub(l) { this.listeners.add(l); return () => this.listeners.delete(l); },
 };
-// Owner unlock triggers — a visitor never sees the editing UI.
 (function () {
   try { if (new URLSearchParams(location.search).has('edit')) editStore.unlock(); } catch (e) {}
   window.addEventListener('keydown', (e) => {
@@ -82,11 +74,7 @@ function useEditUnlocked() {
   return editStore.unlocked;
 }
 
-/* ── Editable ─────────────────────────────────────────────────────────────────
-   Uncontrolled contentEditable. Initial text comes from localStorage (if the
-   user edited it before) or the `text` prop default. React never reconciles the
-   inner text, so typing is stable. Saves on blur. Single-line by default;
-   multiline keeps Enter. */
+/* ── Editable ────────────────────────────────────────────────────────────────*/
 function Editable({ id, text, as = 'span', className, style = {}, multiline = false }) {
   const ref = useRef(null);
   const editing = useEditMode();
@@ -97,10 +85,10 @@ function Editable({ id, text, as = 'span', className, style = {}, multiline = fa
     let saved = null;
     try { saved = localStorage.getItem('nk:txt:' + id); } catch (e) {}
     ref.current.textContent = (saved != null ? saved : text);
-  }, [id]); // intentionally not depending on `text` so we never clobber edits
+  }, [id]);
 
   const editStyle = editing
-    ? { outline: '1px dashed var(--color-primary-300)', outlineOffset: 3, borderRadius: 3, cursor: 'text' }
+    ? { outline: '1px dashed var(--color-ink-muted)', outlineOffset: 3, borderRadius: 2, cursor: 'text' }
     : {};
 
   return (
@@ -121,7 +109,7 @@ function Editable({ id, text, as = 'span', className, style = {}, multiline = fa
   );
 }
 
-/* ── Lucide icon (CDN, 1.5 stroke, currentColor) ───────────────────────────── */
+/* ── Lucide icon ─────────────────────────────────────────────────────────────*/
 function lucideSvg(name, size) {
   const L = window.lucide;
   if (!L) return '';
@@ -145,36 +133,46 @@ function Icon({ name, size = 20, className = '', style = {} }) {
   );
 }
 
-/* ── Button ──────────────────────────────────────────────────────────────────*/
+/* ── Button — small, minimal, flat ──────────────────────────────────────────*/
 function Button({ variant = 'primary', size = 'md', children, onClick, href, type = 'button', style = {} }) {
   const [hover, setHover] = useState(false);
-  const [press, setPress] = useState(false);
   const sizes = {
-    sm: { height: 32, padding: '0 12px', fontSize: 13, fontWeight: 500, gap: 6 },
-    md: { height: 40, padding: '0 16px', fontSize: 15, fontWeight: 500, gap: 8 },
-    lg: { height: 48, padding: '0 24px', fontSize: 16, fontWeight: 600, gap: 8 },
+    sm: { height: 26, padding: '0 10px', fontSize: 11, gap: 5 },
+    md: { height: 30, padding: '0 13px', fontSize: 12, gap: 6 },
+    lg: { height: 34, padding: '0 16px', fontSize: 12, gap: 7 },
   };
   const palette = {
-    primary: { bg: press ? 'var(--color-primary-700)' : hover ? 'var(--color-primary-600)' : 'var(--color-primary-500)', color: 'var(--color-ink-inverse)', border: 'transparent' },
-    secondary: { bg: press ? 'var(--color-surface-border)' : hover ? 'var(--color-surface-2)' : 'var(--color-surface-1)', color: 'var(--color-ink-primary)', border: 'var(--color-surface-border)' },
-    ghost: { bg: press ? 'var(--color-surface-2)' : hover ? 'var(--color-surface-1)' : 'transparent', color: hover ? 'var(--color-ink-primary)' : 'var(--color-ink-secondary)', border: 'transparent' },
+    primary: {
+      bg: hover ? 'var(--color-ink-primary)' : 'transparent',
+      color: hover ? 'var(--color-ink-inverse)' : 'var(--color-ink-primary)',
+      border: 'var(--color-ink-primary)',
+    },
+    secondary: {
+      bg: 'transparent',
+      color: hover ? 'var(--color-ink-primary)' : 'var(--color-ink-secondary)',
+      border: 'var(--color-surface-border)',
+    },
+    ghost: {
+      bg: 'transparent',
+      color: hover ? 'var(--color-ink-primary)' : 'var(--color-ink-muted)',
+      border: 'transparent',
+    },
   };
   const p = palette[variant];
   const s = sizes[size];
   const common = {
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     gap: s.gap, height: s.height, padding: s.padding,
-    fontSize: s.fontSize, fontWeight: s.fontWeight, fontFamily: 'var(--font-base)',
-    borderRadius: 6, cursor: 'pointer', textDecoration: 'none',
+    fontSize: s.fontSize, fontWeight: 400, fontFamily: 'var(--font-base)',
+    letterSpacing: '0.08em', textTransform: 'uppercase',
+    borderRadius: 0, cursor: 'pointer', textDecoration: 'none',
     background: p.bg, color: p.color, border: `1px solid ${p.border}`,
-    transition: 'background 160ms cubic-bezier(0,0,0.2,1), color 160ms cubic-bezier(0,0,0.2,1)',
+    transition: 'background 200ms ease, color 200ms ease',
     ...style,
   };
   const handlers = {
     onMouseEnter: () => setHover(true),
-    onMouseLeave: () => { setHover(false); setPress(false); },
-    onMouseDown: () => setPress(true),
-    onMouseUp: () => setPress(false),
+    onMouseLeave: () => setHover(false),
   };
   if (href) return <a href={href} onClick={onClick} {...handlers} style={common}>{children}</a>;
   return <button type={type} onClick={onClick} {...handlers} style={common}>{children}</button>;
@@ -182,31 +180,54 @@ function Button({ variant = 'primary', size = 'md', children, onClick, href, typ
 
 /* ── Badge ───────────────────────────────────────────────────────────────────*/
 function Badge({ children, variant = 'primary', style = {} }) {
-  const variants = {
-    primary: { bg: 'var(--color-primary-50)', color: 'var(--color-primary-700)' },
-    default: { bg: 'var(--color-surface-2)', color: 'var(--color-ink-secondary)' },
-  };
-  const v = variants[variant];
   return (
-    <span style={{ display: 'inline-flex', alignSelf: 'flex-start', alignItems: 'center', padding: '3px 11px', borderRadius: 9999, fontSize: 13, fontWeight: 500, background: v.bg, color: v.color, ...style }}>
+    <span style={{
+      display: 'inline-flex', alignSelf: 'flex-start', alignItems: 'center',
+      padding: '2px 9px', fontSize: 10.5, fontWeight: 400,
+      letterSpacing: '0.1em', textTransform: 'uppercase',
+      color: 'var(--color-ink-muted)', border: '1px solid var(--color-surface-border)',
+      ...style,
+    }}>
       {children}
     </span>
   );
 }
 
-/* ── Reveal — passthrough wrapper (kept as the seam for production scroll
-   reveals; renders content immediately so it's reliable in every browser and
-   capture tool, matching the design-system website kit). ──────────────────── */
+/* ── Reveal — scroll-driven fade+rise ────────────────────────────────────────*/
 function Reveal({ children, delay = 0, style = {}, as = 'div' }) {
   const Tag = as;
-  return <Tag style={style}>{children}</Tag>;
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  useEffect(() => {
+    if (reduced) { setVisible(true); return; }
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.08 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <Tag ref={ref} style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'none' : 'translateY(16px)',
+      transition: reduced ? 'none' : `opacity 700ms cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 700ms cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+      ...style,
+    }}>
+      {children}
+    </Tag>
+  );
 }
 
-/* ── Shared layout shell ─────────────────────────────────────────────────────
-   Centered max-width container with responsive page padding. */
+/* ── Container ───────────────────────────────────────────────────────────────*/
 function Container({ children, style = {}, narrow = false }) {
   return (
-    <div style={{ maxWidth: narrow ? 760 : 1120, margin: '0 auto', padding: '0 clamp(24px, 5vw, 48px)', width: '100%', boxSizing: 'border-box', ...style }}>
+    <div style={{ maxWidth: narrow ? 720 : 1040, margin: '0 auto', padding: '0 clamp(24px, 5vw, 56px)', width: '100%', boxSizing: 'border-box', ...style }}>
       {children}
     </div>
   );

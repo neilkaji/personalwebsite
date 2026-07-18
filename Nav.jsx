@@ -1,5 +1,4 @@
-/* Neil Kaji site — shared top nav. Links across the multi-page site + the
-   inline-edit toggle. Active item is derived from the current filename. */
+/* Neil Kaji site — fixed minimal nav. Transparent until scrolled. */
 
 function Nav() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -7,7 +6,7 @@ function Nav() {
   const unlocked = useEditUnlocked();
 
   React.useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 16);
+    const handler = () => setScrolled(window.scrollY > 60);
     handler();
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
@@ -26,56 +25,64 @@ function Nav() {
 
   return (
     <header style={{
-      position: 'sticky', top: 0, zIndex: 50, height: 64,
-      background: scrolled ? 'rgba(246,240,232,0.9)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(8px)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'blur(8px)' : 'none',
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      height: 'var(--nk-nav-h, 52px)',
+      background: scrolled ? 'rgba(242,243,245,0.90)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(16px)' : 'none',
+      WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
       borderBottom: `1px solid ${scrolled ? 'var(--color-surface-border)' : 'transparent'}`,
-      boxShadow: scrolled ? '0 1px 2px rgba(26,22,18,0.06)' : 'none',
-      transition: 'background 280ms cubic-bezier(0.22,1,0.36,1), border-color 280ms, box-shadow 280ms',
+      transition: 'background 500ms ease, border-color 500ms ease',
     }}>
       <div style={{
-        maxWidth: 1120, margin: '0 auto', height: '100%',
-        padding: '0 clamp(24px, 5vw, 48px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        maxWidth: 1040, margin: '0 auto', height: '100%',
+        padding: '0 clamp(24px, 5vw, 56px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        <a href="index.html" style={{ fontSize: 17, fontWeight: 700, color: 'var(--color-ink-primary)', letterSpacing: '-0.02em' }}>NK</a>
+        <a href="index.html" style={{
+          fontSize: 15, fontWeight: 700, fontStyle: 'italic',
+          color: 'var(--color-ink-primary)', letterSpacing: '-0.01em',
+          opacity: 1, textDecoration: 'none',
+          transition: 'opacity 200ms ease',
+        }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.5'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+        >NK</a>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 2.4vw, 28px)' }}>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(14px, 2vw, 26px)' }}>
-            {items.map((it) => {
-              const active = current === it.href;
-              return (
-                <a key={it.href} href={it.href} style={{
-                  fontSize: 13.5, fontWeight: 500,
-                  color: active ? 'var(--color-ink-primary)' : 'var(--color-ink-secondary)',
-                  position: 'relative', paddingBottom: 2,
-                  borderBottom: active ? '1.5px solid var(--color-primary-500)' : '1.5px solid transparent',
-                  transition: 'color 160ms ease-out',
-                }}>{it.label}</a>
-              );
-            })}
-          </nav>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 2.5vw, 30px)' }}>
+          {items.map((it) => {
+            const active = current === it.href;
+            return (
+              <a key={it.href} href={it.href} style={{
+                fontSize: 11, fontWeight: 400, letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: active ? 'var(--color-ink-primary)' : 'var(--color-ink-muted)',
+                borderBottom: active ? '1px solid var(--color-ink-primary)' : '1px solid transparent',
+                paddingBottom: 1,
+                transition: 'color 200ms ease, border-color 200ms ease',
+                textDecoration: 'none',
+              }}>{it.label}</a>
+            );
+          })}
           <button
             onClick={() => editStore.toggle()}
             title={editing ? 'Done editing' : 'Edit this site'}
             style={{
-              display: unlocked ? 'inline-flex' : 'none', alignItems: 'center', gap: 6, height: 32, padding: '0 12px',
-              fontSize: 13, fontWeight: 500, fontFamily: 'var(--font-base)', cursor: 'pointer',
-              borderRadius: 9999, border: '1px solid var(--color-surface-border)',
-              background: editing ? 'var(--color-primary-500)' : 'var(--color-surface-1)',
-              color: editing ? 'var(--color-ink-inverse)' : 'var(--color-ink-secondary)',
-              transition: 'background 160ms ease-out, color 160ms ease-out',
+              display: unlocked ? 'inline-flex' : 'none', alignItems: 'center', height: 24, padding: '0 9px',
+              fontSize: 10, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase',
+              fontFamily: 'var(--font-base)', cursor: 'pointer',
+              border: '1px solid var(--color-surface-border)',
+              background: editing ? 'var(--color-ink-primary)' : 'transparent',
+              color: editing ? 'var(--color-ink-inverse)' : 'var(--color-ink-muted)',
+              transition: 'background 200ms ease, color 200ms ease',
             }}>
-            <Icon name={editing ? 'check' : 'pencil'} size={15} />
             {editing ? 'Done' : 'Edit'}
           </button>
-        </div>
+        </nav>
       </div>
     </header>
   );
 }
 
-/* Thin banner shown only while editing — tells the user what's going on. */
 function EditHint() {
   const editing = useEditMode();
   if (!editing) return null;
@@ -83,12 +90,12 @@ function EditHint() {
     <div style={{
       position: 'fixed', left: '50%', bottom: 20, transform: 'translateX(-50%)', zIndex: 60,
       display: 'inline-flex', alignItems: 'center', gap: 8,
-      padding: '8px 16px', borderRadius: 9999,
+      padding: '7px 14px',
       background: 'var(--color-ink-primary)', color: 'var(--color-ink-inverse)',
-      fontSize: 13, fontWeight: 500, boxShadow: '0 8px 24px rgba(26,22,18,0.18)',
+      fontSize: 11, fontWeight: 400, letterSpacing: '0.08em', textTransform: 'uppercase',
+      boxShadow: '0 8px 32px rgba(12,14,27,0.18)',
     }}>
-      <Icon name="info" size={15} />
-      Click any text to rewrite it. Changes save in your browser.
+      Click any text to rewrite it.
     </div>
   );
 }
