@@ -3,9 +3,9 @@
 function InspirationsApp() {
   return (
     <React.Fragment>
-      <Nav />
+      <PageNav />
       <main>
-        <Container style={{ paddingTop: 'calc(var(--nk-nav-h, 52px) + 72px)', paddingBottom: 140 }}>
+        <Container style={{ paddingTop: 100, paddingBottom: 140 }}>
           <Reveal>
             <p className="overline" style={{ margin: 0 }}>
               <Editable id="insppage-overline" text="Inspirations" />

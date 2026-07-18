@@ -33,6 +33,8 @@ image-slot { display: block; }
   .nk-blog-row { grid-template-columns: 1fr !important; }
 }
 
+@media (max-width: 860px) { .nk-sidenav { display: none !important; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

@@ -14,7 +14,7 @@ const NKPlayer = (function () {
   const TITLE = 'Raindance';
   const TIME_KEY = 'nk:player:time';
   const PLAY_KEY = 'nk:player:playing';
-  const PRIMARY = '#C4532B';
+  const PRIMARY = '#3A3D52';
   const BARS = 5;
 
   // Distinguish a real browser refresh (reset the track) from in-site link

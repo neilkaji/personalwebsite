@@ -3,15 +3,15 @@
 function ContactApp() {
   const links = [
     { id: 'cb-email', kind: 'Email', label: 'neilkajibusiness@gmail.com', href: 'mailto:neilkajibusiness@gmail.com' },
-    { id: 'cb-ig', kind: 'Instagram', label: '@neilnkaji', href: 'https://www.instagram.com/neilnkaji/' },
+    { id: 'cb-ig', kind: 'Instagram', label: '@neildoesphysics', href: 'https://www.instagram.com/neildoesphysics/' },
     { id: 'cb-yt', kind: 'YouTube', label: 'youtube.com/@neilkaji', href: 'https://www.youtube.com/@neilkaji' },
   ];
 
   return (
     <React.Fragment>
-      <Nav />
+      <PageNav />
       <main>
-        <Container style={{ paddingTop: 'calc(var(--nk-nav-h, 52px) + 72px)', paddingBottom: 140 }}>
+        <Container style={{ paddingTop: 100, paddingBottom: 140 }}>
           <Reveal>
             <p className="overline" style={{ margin: 0 }}>
               <Editable id="cb-overline" text="Get in touch" />

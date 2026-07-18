@@ -1,4 +1,4 @@
-/* Neil Kaji site — HOME. Name + page links only. */
+/* Neil Kaji site — HOME. Name + page links only. No nav bar. */
 
 const traverseLink = {
   display: 'inline-flex', alignItems: 'center', gap: 7,
@@ -11,7 +11,6 @@ const traverseLink = {
 function App() {
   return (
     <React.Fragment>
-      <Nav />
       <main>
         <div style={{
           minHeight: '100vh', display: 'flex', flexDirection: 'column',
@@ -38,7 +37,7 @@ function App() {
             letterSpacing: '0.01em',
             animation: 'nk-rise 1000ms cubic-bezier(0.22,1,0.36,1) 180ms both',
           }}>
-            <Editable id="hero-desc" text="Building. Creating. Shipping." />
+            <Editable id="hero-desc" text="Creating. Learning. Building." />
           </p>
           <div style={{
             display: 'flex', gap: 32, marginTop: 52, flexWrap: 'wrap', justifyContent: 'center',
@@ -49,6 +48,7 @@ function App() {
             <a href="portfolio.html" style={traverseLink}>Portfolio</a>
             <a href="inspirations.html" style={traverseLink}>Inspirations</a>
             <a href="bio.html" style={traverseLink}>Bio</a>
+            <a href="contact.html" style={traverseLink}>Contact</a>
           </div>
         </div>
       </main>
