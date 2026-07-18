@@ -11,7 +11,7 @@ function BioApp() {
               <Editable id="biopage-overline" text="Bio" />
             </p>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--color-ink-primary)', marginTop: 12, maxWidth: 640 }}>
-              <Editable id="biopage-head" text="Fifteen years old. Westchester. I learn by building." multiline />
+              <Editable id="biopage-head" text="Fifteen years old. Westchester." multiline />
             </h1>
           </Reveal>
 
@@ -24,7 +24,7 @@ function BioApp() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
               <Reveal delay={80}>
                 <p style={{ fontSize: 17, lineHeight: 1.8, color: 'var(--color-ink-secondary)' }}>
-                  <Editable id="bio-p1" text="I'm a high school student and entrepreneur that wants to make an impact on the world. I make content on social media and build what comes to mind." multiline />
+                  <Editable id="bio-p1" text="I'm a high school student that wants to make an impact on the world. I make content on social media and build what comes to mind." multiline />
                 </p>
               </Reveal>
             </div>
