@@ -16,12 +16,12 @@ const TIMELINE = [
   { id: 'tl-5', date: 'June 6, 2026', title: 'Won 1st place for Physics at Somers Science Fair',
     desc: 'Managed to place above 40 kids in my category and win an award for my proposed quantum computing research.' },
   { id: 'tl-4', date: 'May 31, 2026', title: 'First user feedback on app ideas',
-    desc: 'Gathered initial feedback on app ideas that I would build over the summer, which yielded helpful information.' },
+    desc: 'Gathered initial feedback on app ideas.' },
   { id: 'tl-1', date: 'May 30, 2026',  title: 'Launched this website',
     desc: 'Just a portfolio and place to house my thoughts, made after a handful of iterations.' },
   { id: 'tl-2', date: 'May 20, 2026', title: 'Won gold at NYSSMA majors',
     desc: 'Should be the first of many.' },
-  { id: 'tl-3', date: 'October 10, 2010', title: 'Where it all began', desc: '' },
+  { id: 'tl-3', date: 'October 10, 2010', title: 'The beginning', desc: '' },
 ];
 
 /* ── Blog posts ── most recent first ───────────────────────────────────────── */
