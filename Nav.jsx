@@ -19,6 +19,7 @@ function Nav() {
     { href: 'portfolio.html', label: 'Portfolio' },
     { href: 'inspirations.html', label: 'Inspirations' },
     { href: 'bio.html', label: 'Bio' },
+    { href: 'contact.html', label: 'Contact' },
   ];
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   const current = path === '' ? 'index.html' : path;

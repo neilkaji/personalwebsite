@@ -94,7 +94,6 @@ function BlogApp() {
           </div>
         </Container>
       </main>
-      <ContactBar />
       <EditHint />
       <PostOverlay post={open} onClose={() => setOpen(null)} />
     </React.Fragment>

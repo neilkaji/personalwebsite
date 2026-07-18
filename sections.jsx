@@ -203,26 +203,28 @@ function PortfolioCard({ it }) {
             ? <Editable id={it.id + '-descFull'} text={it.descFull || it.desc} multiline />
             : <Editable id={it.id + '-desc'} text={it.desc} multiline />}
         </p>
-        {it.descFull && (
-          <button onClick={() => setExpanded((e) => !e)} style={{
-            appearance: 'none', border: 0, background: 'none', padding: 0, marginTop: 6, cursor: 'pointer',
-            alignSelf: 'flex-start', fontSize: 11, fontWeight: 400, letterSpacing: '0.1em',
-            textTransform: 'uppercase', color: 'var(--color-ink-muted)',
-            fontFamily: 'var(--font-base)',
-          }}>
-            {expanded ? 'Show less' : 'Show more'}
-          </button>
-        )}
-        {it.url && (
-          <a href={it.url} target="_blank" rel="noopener noreferrer" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: 'var(--color-ink-primary)', marginTop: 14,
-            borderBottom: '1px solid var(--color-surface-border)', paddingBottom: 1,
-          }}>
-            Visit site <Icon name="arrow-right" size={12} />
-          </a>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16, gap: 12 }}>
+          {it.descFull ? (
+            <button onClick={() => setExpanded((e) => !e)} style={{
+              appearance: 'none', border: 0, background: 'none', padding: 0, cursor: 'pointer',
+              fontSize: 11, fontWeight: 400, letterSpacing: '0.1em',
+              textTransform: 'uppercase', color: 'var(--color-ink-muted)',
+              fontFamily: 'var(--font-base)',
+            }}>
+              {expanded ? 'Show less' : 'Show more'}
+            </button>
+          ) : <span />}
+          {it.url && (
+            <a href={it.url} target="_blank" rel="noopener noreferrer" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: 'var(--color-ink-primary)',
+              borderBottom: '1px solid var(--color-surface-border)', paddingBottom: 1,
+            }}>
+              Visit site <Icon name="arrow-right" size={12} />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

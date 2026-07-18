@@ -23,7 +23,6 @@ function PortfolioApp() {
           </div>
         </Container>
       </main>
-      <ContactBar />
       <EditHint />
     </React.Fragment>
   );

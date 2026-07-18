@@ -23,7 +23,6 @@ function InspirationsApp() {
           </div>
         </Container>
       </main>
-      <ContactBar />
       <EditHint />
     </React.Fragment>
   );

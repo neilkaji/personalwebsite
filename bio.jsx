@@ -31,7 +31,6 @@ function BioApp() {
           </div>
         </Container>
       </main>
-      <ContactBar />
       <EditHint />
     </React.Fragment>
   );
