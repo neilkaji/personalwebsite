@@ -80,7 +80,7 @@ const PORTFOLIO = [
   { id: 'proj-2', category: 'Social Media', title: 'Physics-Centered Instagram Account', date: 'July 15, 2026 (start)',
     hideImage: true,
     desc: 'A collection of posts, updated as frequently as possible, intended to teach others physics concepts and interesting physics-based ideas in an easily digestible manner.',
-    descFull: 'A collection of posts, updated as frequently as possible, intended to teach others physics concepts and interesting physics-based ideas in an easily digestible manner. I began this with zero initial following, and as of July 17th, intend to post (near) daily to rack up outreach, followers, etc.' },
+    descFull: 'A collection of posts, updated as frequently as possible, intended to teach others physics concepts and interesting physics-based ideas in an easily digestible manner. I began this with zero initial following, and as of July 17th, I intend to post (near) daily to rack up outreach, followers, etc.' },
   { id: 'proj-1', category: 'Web App', title: 'Quantum Playground', date: 'July 7, 2026', hideImage: true,
     url: 'https://quantum-playground-mocha.vercel.app/#/start',
     desc: 'An interactive web app to teach beginners the basics of quantum computing.',
