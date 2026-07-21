@@ -1,6 +1,6 @@
 /* Neil Kaji site — shared placeholder content.
    Single source of truth for the lists rendered on the home previews AND on the
-   full Timeline / Blog / Inspirations pages. Each item carries stable `*Id`
+   full Timeline / Blog pages. Each item carries stable `*Id`
    strings so inline edits (keyed by those ids in localStorage) sync between the
    home preview and the full page automatically.
 
@@ -9,8 +9,6 @@
 
 /* ── Timeline ── most recent first ─────────────────────────────────────────── */
 const TIMELINE = [
-  { id: 'tl-7', date: 'July 15, 2026', title: 'First public Instagram post',
-    desc: 'First of many posts on my public Instagram, where I teach physics concepts accessibly.' },
   { id: 'tl-6', date: 'July 7, 2026', title: 'First web app: Quantum Playground',
     desc: "Published my first web app to teach complete beginners learn the basics of quantum computing. It's what I would've wanted a few months ago." },
   { id: 'tl-5', date: 'June 6, 2026', title: 'Won 1st place for Physics at Somers Science Fair',
@@ -68,23 +66,12 @@ const POSTS = [
   },
 ];
 
-/* ── Inspirations ── ────────────────────────────────────────────────────────── */
-const INSPIRATIONS = [
-  { id: 'insp-1', name: 'Matthew Park', kind: 'Person',
-    note: 'A 15 year old entrepreneur who is only a few days younger than me- he is absolutely cracked.' },
-  { id: 'insp-2', name: 'Gon (HxH)', kind: 'Character', note: 'His determination is absolutely oustanding and genuinely eye-opening.' },
-];
-
 /* ── Portfolio ── most recent first ────────────────────────────────────────── */
 const PORTFOLIO = [
-  { id: 'proj-2', category: 'Social Media', title: 'Physics-Centered Instagram Account', date: 'July 15, 2026 (start)',
-    hideImage: true,
-    desc: 'A collection of posts, updated as frequently as possible, intended to teach others physics concepts and interesting physics-based ideas in an easily digestible manner.',
-    descFull: 'A collection of posts, updated as frequently as possible, intended to teach others physics concepts and interesting physics-based ideas in an easily digestible manner. I began this with zero initial following, and as of July 17th, I intend to post (near) daily to rack up outreach, followers, etc.' },
   { id: 'proj-1', category: 'Web App', title: 'Quantum Playground', date: 'July 7, 2026', hideImage: true,
     url: 'https://quantum-playground-mocha.vercel.app/#/start',
     desc: 'An interactive web app to teach beginners the basics of quantum computing.',
     descFull: 'An interactive web app to teach beginners the basics of quantum computing. I am in the trenches of quantum computing research, but when I first started I found it very difficult to understand the most basic topics. The high level math and concepts that were required to understand quantum computing were simply beyond me, and I still find them to be the most daunting part of this research. To remedy this, I built a heavily interactive app that should help complete beginners learn the linear algebra and quantum ideas needed to dive into quantum computing with as low of a skill requirement as possible.' },
 ];
 
-Object.assign(window, { TIMELINE, POSTS, INSPIRATIONS, PORTFOLIO });
+Object.assign(window, { TIMELINE, POSTS, PORTFOLIO });

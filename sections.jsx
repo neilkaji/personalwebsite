@@ -132,29 +132,6 @@ function BlogList({ posts, style = 'rows', onOpen }) {
   );
 }
 
-/* ── Inspirations ────────────────────────────────────────────────────────────*/
-function InspirationGrid({ items }) {
-  return (
-    <div>
-      {items.map((it, i) => (
-        <Reveal key={it.id} delay={Math.min(i, 4) * 60}>
-          <div style={{ padding: '28px 0', borderTop: '1px solid var(--color-surface-border)' }}>
-            <span className="overline">
-              <Editable id={it.id + '-kind'} text={it.kind} />
-            </span>
-            <h3 style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 700, letterSpacing: '-0.01em', color: 'var(--color-ink-primary)', marginTop: 8 }}>
-              <Editable id={it.id + '-name'} text={it.name} />
-            </h3>
-            <p style={{ fontSize: 14.5, lineHeight: 1.65, color: 'var(--color-ink-secondary)', marginTop: 7, maxWidth: 640 }}>
-              <Editable id={it.id + '-note'} text={it.note} multiline />
-            </p>
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  );
-}
-
 /* ── Portfolio ───────────────────────────────────────────────────────────────*/
 function PortfolioGrid({ items }) {
   if (!items || items.length === 0) {
@@ -230,4 +207,4 @@ function PortfolioCard({ it }) {
   );
 }
 
-Object.assign(window, { SectionHeader, TimelineList, BlogList, BlogCard, BlogRow, InspirationGrid, PortfolioGrid, PostMeta });
+Object.assign(window, { SectionHeader, TimelineList, BlogList, BlogCard, BlogRow, PortfolioGrid, PostMeta });

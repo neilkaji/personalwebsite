@@ -17,17 +17,10 @@ function App() {
           alignItems: 'center', justifyContent: 'center', textAlign: 'center',
           padding: '0 clamp(24px, 5vw, 56px)',
         }}>
-          <p style={{
-            margin: 0, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase',
-            color: 'var(--color-ink-muted)',
-            animation: 'nk-rise 900ms cubic-bezier(0.22,1,0.36,1) both',
-          }}>
-            <Editable id="hero-overline" text="Westchester · 15" />
-          </p>
           <h1 style={{
             fontSize: 'clamp(5rem, 15vw, 11rem)', fontWeight: 700, lineHeight: 0.92,
             letterSpacing: '-0.04em', color: 'var(--color-ink-primary)',
-            margin: '18px 0 0',
+            margin: 0,
             animation: 'nk-rise 1000ms cubic-bezier(0.22,1,0.36,1) 80ms both',
           }}>
             <Editable id="hero-head" text="Neil Kaji" multiline />
@@ -46,7 +39,6 @@ function App() {
             <a href="timeline.html" style={traverseLink}>Timeline</a>
             <a href="blog.html" style={traverseLink}>Blog</a>
             <a href="portfolio.html" style={traverseLink}>Portfolio</a>
-            <a href="inspirations.html" style={traverseLink}>Inspirations</a>
             <a href="bio.html" style={traverseLink}>Bio</a>
             <a href="contact.html" style={traverseLink}>Contact</a>
           </div>

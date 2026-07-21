@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { href: 'timeline.html',     label: 'Timeline' },
   { href: 'blog.html',         label: 'Blog' },
   { href: 'portfolio.html',    label: 'Portfolio' },
-  { href: 'inspirations.html', label: 'Inspirations' },
   { href: 'bio.html',          label: 'Bio' },
   { href: 'contact.html',      label: 'Contact' },
 ];
