@@ -25,20 +25,12 @@ function App() {
           }}>
             <Editable id="hero-head" text="Neil Kaji" multiline />
           </h1>
-          <p style={{
-            fontSize: 14, color: 'var(--color-ink-muted)', marginTop: 28, fontStyle: 'italic',
-            letterSpacing: '0.01em',
-            animation: 'nk-rise 1000ms cubic-bezier(0.22,1,0.36,1) 180ms both',
-          }}>
-            <Editable id="hero-desc" text="Creating. Learning. Building." />
-          </p>
           <div style={{
             display: 'flex', gap: 32, marginTop: 52, flexWrap: 'wrap', justifyContent: 'center',
             animation: 'nk-rise 1000ms cubic-bezier(0.22,1,0.36,1) 280ms both',
           }}>
             <a href="timeline.html" style={traverseLink}>Timeline</a>
             <a href="blog.html" style={traverseLink}>Blog</a>
-            <a href="portfolio.html" style={traverseLink}>Portfolio</a>
             <a href="bio.html" style={traverseLink}>Bio</a>
             <a href="contact.html" style={traverseLink}>Contact</a>
           </div>

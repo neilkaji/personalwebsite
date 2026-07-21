@@ -3,7 +3,7 @@
 function BioApp() {
   return (
     <React.Fragment>
-      <PageNav />
+      <TopNav />
       <main>
         <Container style={{ paddingTop: 100, paddingBottom: 140 }}>
           <Reveal>

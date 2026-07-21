@@ -1,13 +1,12 @@
 /* Neil Kaji site — navigation components.
    Nav: legacy top bar (unused on home, kept for compatibility).
-   PageNav: inner-page back button + vertical side nav.
+   TopNav: minimal fixed top bar for inner pages.
    EditHint: editing mode banner. */
 
 const NAV_ITEMS = [
   { href: 'index.html',        label: 'Home' },
   { href: 'timeline.html',     label: 'Timeline' },
   { href: 'blog.html',         label: 'Blog' },
-  { href: 'portfolio.html',    label: 'Portfolio' },
   { href: 'bio.html',          label: 'Bio' },
   { href: 'contact.html',      label: 'Contact' },
 ];
@@ -17,24 +16,54 @@ function currentPage() {
   return p === '' ? 'index.html' : p;
 }
 
-/* ── PageNav — back button for inner pages ───────────────────────────────────*/
-function PageNav() {
-  const goBack = (e) => {
-    e.preventDefault();
-    if (history.length > 1) history.back();
-    else location.href = 'index.html';
-  };
+/* ── TopNav — minimal fixed top bar for inner pages ──────────────────────────*/
+function TopNav() {
+  const unlocked = useEditUnlocked();
+  const editing = useEditMode();
+  const current = currentPage();
+  const links = NAV_ITEMS.filter((it) => it.href !== 'index.html');
 
   return (
-    <a href="index.html" onClick={goBack} style={{
-      position: 'fixed', top: 28, left: 28, zIndex: 40,
-      fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase',
-      color: 'var(--color-ink-muted)', textDecoration: 'none',
-      opacity: 0.55, transition: 'opacity 200ms ease',
-    }}
-      onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-      onMouseLeave={(e) => e.currentTarget.style.opacity = '0.55'}
-    >← Back</a>
+    <header style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+      background: 'rgba(242,243,245,0.82)',
+      backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+      borderBottom: '1px solid var(--color-surface-border)',
+    }}>
+      <div style={{
+        maxWidth: 1040, margin: '0 auto', height: 56,
+        padding: '0 clamp(24px, 5vw, 56px)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24,
+      }}>
+        <a href="index.html" style={{
+          fontSize: 15, fontWeight: 700, fontStyle: 'italic',
+          color: 'var(--color-ink-primary)', letterSpacing: '-0.01em', textDecoration: 'none',
+        }}>NK</a>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 2.5vw, 30px)' }}>
+          {links.map((it) => {
+            const active = current === it.href;
+            return (
+              <a key={it.href} href={it.href} style={{
+                fontSize: 11, fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase',
+                color: active ? 'var(--color-ink-primary)' : 'var(--color-ink-muted)',
+                borderBottom: active ? '1px solid var(--color-ink-primary)' : '1px solid transparent',
+                paddingBottom: 1, textDecoration: 'none',
+              }}>{it.label}</a>
+            );
+          })}
+          {unlocked && (
+            <button onClick={() => editStore.toggle()} style={{
+              display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px',
+              fontSize: 10, fontWeight: 400, letterSpacing: '0.1em', textTransform: 'uppercase',
+              fontFamily: 'var(--font-base)', cursor: 'pointer',
+              border: '1px solid var(--color-surface-border)',
+              background: editing ? 'var(--color-ink-primary)' : 'transparent',
+              color: editing ? 'var(--color-ink-inverse)' : 'var(--color-ink-muted)',
+            }}>{editing ? 'Done' : 'Edit'}</button>
+          )}
+        </nav>
+      </div>
+    </header>
   );
 }
 
@@ -121,4 +150,4 @@ function EditHint() {
   );
 }
 
-Object.assign(window, { Nav, PageNav, EditHint });
+Object.assign(window, { Nav, TopNav, EditHint });
