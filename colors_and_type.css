@@ -1,6 +1,6 @@
 /* ───────────────────────────────────────────────────────────────
    Neil Kaji — Colors & Type
-   Cool off-white + pinkish magenta ink. Playfair Display serif throughout.
+   Cool off-white + vibrant electric orange ink. Playfair Display serif throughout.
    ─────────────────────────────────────────────────────────────── */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
@@ -12,12 +12,12 @@
   --color-surface-2:      #DDDEE3;
   --color-surface-border: #CECFD5;
 
-  /* ─── Ink — pinkish magenta ─── */
-  --color-ink-primary:   #A21A63;
-  --color-ink-secondary: #7C2A56;
-  --color-ink-muted:     #B87A9C;
+  /* ─── Ink — vibrant electric orange ─── */
+  --color-ink-primary:   #FF4D00;
+  --color-ink-secondary: #C4410A;
+  --color-ink-muted:     #E0935A;
   --color-ink-inverse:   #F2F3F5;
-  --color-ink-accent:    #C21E76;
+  --color-ink-accent:    #FF6A1A;
 
   /* ─── Primary (mapped to dark ink — no accent color) ─── */
   --color-primary-50:  #EEEEF2;

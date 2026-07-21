@@ -84,9 +84,6 @@ function BlogApp() {
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--color-ink-primary)', marginTop: 12 }}>
               <Editable id="blogpage-head" text="The blog" />
             </h1>
-            <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--color-ink-muted)', marginTop: 16, maxWidth: 520, fontStyle: 'italic' }}>
-              <Editable id="blogpage-intro" text="Notes on what I'm building, learning, and thinking about." multiline />
-            </p>
           </Reveal>
 
           <div style={{ marginTop: 64, maxWidth: 720 }}>

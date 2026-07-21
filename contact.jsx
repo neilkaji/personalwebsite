@@ -3,7 +3,7 @@
 function ContactApp() {
   const links = [
     { id: 'cb-email', kind: 'Email', label: 'neilkajibusiness@gmail.com', href: 'mailto:neilkajibusiness@gmail.com' },
-    { id: 'cb-ig', kind: 'Instagram', label: '@neildoesphysics', href: 'https://www.instagram.com/neildoesphysics/' },
+    { id: 'cb-ig', kind: 'Instagram', label: '@neilnkaji', href: 'https://www.instagram.com/neilnkaji/' },
     { id: 'cb-yt', kind: 'YouTube', label: 'youtube.com/@neilkaji', href: 'https://www.youtube.com/@neilkaji' },
   ];
 
@@ -24,7 +24,7 @@ function ContactApp() {
             </p>
           </Reveal>
 
-          <div style={{ marginTop: 64, maxWidth: 560, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ marginTop: 32, maxWidth: 560, display: 'flex', flexDirection: 'column' }}>
             {links.map((l, i) => (
               <Reveal key={l.id} delay={i * 60}>
                 <a href={l.href}
