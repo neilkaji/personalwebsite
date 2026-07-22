@@ -1,23 +1,23 @@
 /* ───────────────────────────────────────────────────────────────
    Neil Kaji — Colors & Type
-   Cool off-white + vibrant electric orange ink. Playfair Display serif throughout.
+   Pale-lime canvas + warm coral ink. Playfair Display serif throughout.
    ─────────────────────────────────────────────────────────────── */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 :root {
-  /* ─── Surface ─── */
-  --color-surface-canvas: #F2F3F5;
-  --color-surface-1:      #E8E9EC;
-  --color-surface-2:      #DDDEE3;
-  --color-surface-border: #CECFD5;
+  /* ─── Surface — soft pale-lime canvas ─── */
+  --color-surface-canvas: #F4F8C9;
+  --color-surface-1:      #EDF2BC;
+  --color-surface-2:      #E5EBAD;
+  --color-surface-border: #D6DE97;
 
-  /* ─── Ink — vibrant electric orange ─── */
-  --color-ink-primary:   #FF4D00;
-  --color-ink-secondary: #C4410A;
-  --color-ink-muted:     #E0935A;
-  --color-ink-inverse:   #F2F3F5;
-  --color-ink-accent:    #FF6A1A;
+  /* ─── Ink — warm coral ─── */
+  --color-ink-primary:   #EF6E6E;
+  --color-ink-secondary: #EF6E6E;
+  --color-ink-muted:     #EF6E6E;
+  --color-ink-inverse:   #F4F8C9;
+  --color-ink-accent:    #EF6E6E;
 
   /* ─── Primary (mapped to dark ink — no accent color) ─── */
   --color-primary-50:  #EEEEF2;
