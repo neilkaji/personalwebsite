@@ -31,7 +31,6 @@ function App() {
           }}>
             <a href="timeline.html" style={traverseLink}>Timeline</a>
             <a href="blog.html" style={traverseLink}>Blog</a>
-            <a href="bio.html" style={traverseLink}>Bio</a>
             <a href="contact.html" style={traverseLink}>Contact</a>
           </div>
         </div>

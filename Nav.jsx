@@ -7,7 +7,6 @@ const NAV_ITEMS = [
   { href: 'index.html',        label: 'Home' },
   { href: 'timeline.html',     label: 'Timeline' },
   { href: 'blog.html',         label: 'Blog' },
-  { href: 'bio.html',          label: 'Bio' },
   { href: 'contact.html',      label: 'Contact' },
 ];
 
@@ -26,8 +25,7 @@ function TopNav() {
   return (
     <header style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
-      background: 'rgba(242,243,245,0.82)',
-      backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+      background: 'var(--color-surface-canvas)',
       borderBottom: '1px solid var(--color-surface-border)',
     }}>
       <div style={{
@@ -85,9 +83,7 @@ function Nav() {
     <header style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
       height: 'var(--nk-nav-h, 52px)',
-      background: scrolled ? 'rgba(242,243,245,0.90)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(16px)' : 'none',
-      WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+      background: scrolled ? 'var(--color-surface-canvas)' : 'transparent',
       borderBottom: `1px solid ${scrolled ? 'var(--color-surface-border)' : 'transparent'}`,
       transition: 'background 500ms ease, border-color 500ms ease',
     }}>

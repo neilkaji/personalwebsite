@@ -86,7 +86,7 @@ function BlogApp() {
             </h1>
           </Reveal>
 
-          <div style={{ marginTop: 64, maxWidth: 720 }}>
+          <div style={{ marginTop: 24, maxWidth: 720 }}>
             <BlogList posts={[]} style="rows" onOpen={setOpen} />
           </div>
         </Container>

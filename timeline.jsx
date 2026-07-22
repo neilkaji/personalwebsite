@@ -15,7 +15,7 @@ function TimelineApp() {
             </h1>
           </Reveal>
 
-          <div style={{ marginTop: 64, maxWidth: 720 }}>
+          <div style={{ marginTop: 24, maxWidth: 720 }}>
             <TimelineList items={window.TIMELINE} style="line" />
           </div>
         </Container>

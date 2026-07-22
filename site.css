@@ -23,7 +23,6 @@ image-slot { display: block; }
 
 /* Responsive collapse */
 @media (max-width: 880px) {
-  .nk-bio-teaser { grid-template-columns: 1fr !important; }
   .nk-contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   .nk-blog-row { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
   .nk-blog-row > span { display: none !important; }
