@@ -5,6 +5,7 @@ function ContactBar() {
     { id: 'cb-email', kind: 'Email', label: 'neilkajibusiness@gmail.com', href: 'mailto:neilkajibusiness@gmail.com' },
     { id: 'cb-ig', kind: 'Instagram', label: '@neilnkaji', href: 'https://www.instagram.com/neilnkaji/' },
     { id: 'cb-yt', kind: 'YouTube', label: 'youtube.com/@neilkaji', href: 'https://www.youtube.com/@neilkaji' },
+    { id: 'cb-li', kind: 'LinkedIn', label: 'linkedin.com/in/neil-kaji', href: 'https://www.linkedin.com/in/neil-kaji-897691423/' },
   ];
 
   return (
